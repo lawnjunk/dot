@@ -70,16 +70,16 @@ alias dmenv='eval `docker-machine env default`'
 alias dmssh='docker-machine ssh default'
 
 #docker shorthand
-alias d='docker'
-alias dr='docker run'
-alias dp='docker ps'
-alias dpa='docker ps -a'
-alias dc='docker commit'
-alias dst='docker start'
-alias dsp='docker stop'
-alias di='docker images'
-alias dpl='docker pull'
-alias dpu='docker push'
+alias dr='docker'
+alias drr='docker run'
+alias drp='docker ps'
+alias drpa='docker ps -a'
+alias drc='docker commit'
+alias drst='docker start'
+alias drsp='docker stop'
+alias dri='docker images'
+alias drl='docker pull'
+alias dru='docker push'
 function drkilla {
   NUM_CONTAINER=$(docker ps -a |wc -l | sed "s/ *//g")
   NUM_CONTAINER=$(expr $NUM_CONTAINER - 1)
