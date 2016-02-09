@@ -1,0 +1,18 @@
+# Path to nacnud shell lib
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+# setup zsh-complettions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# load oh-my-zsh plugins
+plugins=(git)
+plugins=(colorize)
+plugins=(zsh-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+
+# ~   ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
+export DOT=$HOME/.dotfiles
+source $DOT/dot.sh
+
+[ ! -n "$TMUX" ] && tmux -2
+
