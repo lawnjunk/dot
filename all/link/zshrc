@@ -11,8 +11,8 @@ plugins=(zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ~   ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
-export DOT=$HOME/.dotfiles
-source $DOT/dot.sh
+export DOT=$HOME/.dot
+source $DOT/bin/dot-source.sh
 
 [ ! -n "$TMUX" ] && tmux -2
 
