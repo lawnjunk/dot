@@ -1,25 +1,27 @@
-# sourcing files in $DOT/ALL and $DOT/$DOT_OS
-
+# sourcing files in $DOT/ALL/all $DOT/ALL/$DOT_SHELL and $DOT/$DOT_OS/all $DOT/$DOT_OS/$DOT_SHELL
 source ~/.dot.conf
 
-DOT_ALL_SOURCE_PATH="$DOT/ALL/source"
-DOT_ALL_SOURCE_FILES=$(ls $DOT_ALL_SOURCE_PATH)
+function sourceFilesInDir(){
+  DIR_PATH="$1"
+  if [ -d "$DIR_PATH" ];then 
+    SOURCE_FILES=$(ls $DIR_PATH)
 
-if [ DOT_ALL_SOURCE_FILES ]; then 
-  echo "DOT sourcing files in $DOT_ALL_SOURCE_PATH"
-  for file in $(ls $DOT_ALL_SOURCE_PATH);do
-    echo "   loading: $file"
-    source $DOT_ALL_SOURCE_PATH/$file
-  done
-fi
+    if [ "$SOURCE_FILES" ]; then 
+      echo "DOT sourcing files in $DIR_PATH"
+      for file in $(ls $DIR_PATH);do
+        echo "   loading: $file"
+        source $DIR_PATH/$file
+      done
+    fi
+  fi
+}
 
-DOT_OS_SOURCE_PATH=$DOT/$DOT_OS/source
-DOT_OS_SOURCE_FILES=$(ls $DOT_OS_SOURCE_PATH)
+DOT_ALL_SOURCE_PATH="$DOT/ALL/source/all"
+DOT_ALL_SHELL_SOURCE_PATH="$DOT/ALL/source/$DOT_SHELL"
+DOT_OS_SOURCE_PATH="$DOT/$DOT_OS/source/all"
+DOT_OS_SHELL_SOURCE_PATH="$DOT/$DOT_OS/source/$DOT_SHELL"
 
-if [  $DOT_OS_SOURCE_FILES ]; then 
-  echo -e "\nDOT sourcing files in $DOT_OS_SOURCE_PATH"
-  for os_file in $(ls $DOT_OS_SOURCE_PATH);do
-    echo "   loading: $os_file"
-    source $DOT_OS_SOURCE_PATH/$os_file
-  done
-fi
+sourceFilesInDir $DOT_ALL_SOURCE_PATH
+sourceFilesInDir $DOT_ALL_SHELL_SOURCE_PATH
+sourceFilesInDir $DOT_OS_SOURCE_PATH
+sourceFilesInDir $DOT_OS_SHELL_SOURCE_PATH
