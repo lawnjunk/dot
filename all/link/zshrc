@@ -11,7 +11,7 @@ plugins=(zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ~   ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
-export DOT=$HOME/.dot
+source ~/.dot.conf
 export DOT_SHELL="zsh"
 source $DOT/bin/dot-source.sh
 

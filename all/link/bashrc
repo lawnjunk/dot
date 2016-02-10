@@ -3,6 +3,6 @@
 #source "${GITAWAREPROMPT}/main.sh"
 
 #    ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
-export DOT=$HOME/.dot
+source ~/.dot.conf
 export DOT_SHELL="bash"
 source $DOT/bin/dot-source.sh
