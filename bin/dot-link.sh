@@ -19,7 +19,7 @@ function linkFilesToHome(){
   fi
 }
 
-DOT_ALL_LINK_PATH="$DOT/ALL/link"
+DOT_ALL_LINK_PATH="$DOT/all/link"
 #DOT_ALL_SHELL_SOURCE_PATH="$DOT/ALL/source/$DOT_SHELL"
 #DOT_OS_SOURCE_PATH="$DOT/$DOT_OS/source/all"
 #DOT_OS_SHELL_SOURCE_PATH="$DOT/$DOT_OS/source/$DOT_SHELL"

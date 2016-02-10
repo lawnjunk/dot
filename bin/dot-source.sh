@@ -16,8 +16,8 @@ function sourceFilesInDir(){
   fi
 }
 
-DOT_ALL_SOURCE_PATH="$DOT/ALL/source/all"
-DOT_ALL_SHELL_SOURCE_PATH="$DOT/ALL/source/$DOT_SHELL"
+DOT_ALL_SOURCE_PATH="$DOT/all/source/all"
+DOT_ALL_SHELL_SOURCE_PATH="$DOT/all/source/$DOT_SHELL"
 DOT_OS_SOURCE_PATH="$DOT/$DOT_OS/source/all"
 DOT_OS_SHELL_SOURCE_PATH="$DOT/$DOT_OS/source/$DOT_SHELL"
 

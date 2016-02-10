@@ -3,7 +3,6 @@ if [ $(uname) = "Darwin" ]; then
   lscolor="-G"
 else
   lscolor="--color=auto"
-  source $MESH/alias-linux.sh
 fi
 
 # list dir
