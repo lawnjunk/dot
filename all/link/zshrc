@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 # ~   ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
 export DOT=$HOME/.dot
+export DOT_SHELL="zsh"
 source $DOT/bin/dot-source.sh
 
 [ ! -n "$TMUX" ] && tmux -2

@@ -1,0 +1,8 @@
+# setup get aware prompt
+#export GITAWAREPROMPT=$HOME/.sh/git-aware-prompt
+#source "${GITAWAREPROMPT}/main.sh"
+
+#    ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
+export DOT=$HOME/.dot
+export DOT_SHELL="bash"
+source $DOT/bin/dot-source.sh

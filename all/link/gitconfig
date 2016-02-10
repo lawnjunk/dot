@@ -1,0 +1,18 @@
+[user]
+	name = Duncan Marsh
+	email = dwolfm@gmail.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = true 
+[alias]
+	d = difftool
+[merge]
+	tool = vimdiff3
+[mergetool]
+	prompt = true 
+	keepBackup = false
+[alias]
+	d = difftool
+[mergetool "vimdiff3"]
+	cmd = vim -f -d \"$LOCAL\" \"$REMOTE\"
