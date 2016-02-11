@@ -10,39 +10,27 @@ Plugin 'gmarik/Vundle.vim'
 
 " default
 Plugin 'L9'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " UI n stuff 
 Plugin 'flazz/vim-colorschemes'
 Plugin 'airblade/vim-gitgutter'  
 Plugin 'bling/vim-airline'  
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} 
+Plugin 'bling/vim-bufferline'
 
 " y not type less
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'mattn/emmet-vim'
-Plugin 'ervandew/supertab'
-Plugin 'vim-taglist-plus'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Rip-Rip/clang_complete'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'Chiel92/vim-autoformat'
 
 " better syntax
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'mxw/vim-jsx'
-Plugin 'Chiel92/vim-autoformat'
 
 " file nav
 Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-bufferline'
-Plugin 'git://git.wincent.com/command-t.git'
 
 " handy tools
-Plugin 'sjl/gundo.vim' 
 Plugin 'matze/vim-move' 
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
@@ -76,83 +64,51 @@ colorscheme jellybeans    " set the color scheme
 set undodir=~/.vim/undoHist
 set undofile
 
-function Qsesh()
-	:mksession! Session.vim
-	:wqall
-endfunction
-
 " Key Bindings
-" set doble tat i key to equal escape
 imap ii <Esc>
-let mapleader = "\<Space>" " leader = spaecbar
-map ZZ :exec Qsesh()<CR>
-" change hop to beging and end of line
+let mapleader = "\<Space>"
 noremap H ^
 noremap L $
-
-" switch windows with leader hjlk
-map wv <C-w>v
-map wh <C-w>h
-map ww <C-w>w
-map wh <C-W>h
-map wj <C-W>j
-map wk <C-W>k
-map wl <C-W>l
-map wq :q<CR>
 
 " copy and paste from clipboard 
 map <leader>cp "+y
 map <leader>cv "+p
-" get wordcound
-noremap <leader>wc :!wc -w %<CR>
-" syntastic cheack
-"nnoremap <silent> <leader>s :SyntasticCheck<CR>
+
+" leader s = syntastic
+nnoremap <silent> <leader>s :SyntasticCheck<CR>  
+
+" leader sp = set paste 
 nnoremap <silent> <leader>sp :set paste<CR>
+
+" leader sn = set nopaste
 nnoremap <silent> <leader>sn :set nopaste<CR>
-" open nerdtree
-nnoremap <silent> <leader>t :TlistToggle<CR>
-" open gundo
-nnoremap <silent> <leader>u :GundoToggle<CR>
-" open ctl-p
-nnoremap <silent> <leader>p :CtrlP<CR>
-" 
+
+" leader p = control p
+nnoremap <silent> <leader>p :CtrlPMixed<CR>
+
+" vim-autoformat
+nnoremap <silent> <leader>b :Autoformat<CR>
 
 " Vim-Airline
 let g:airline_powerline_fonts = 1           " Use powerline fonts for
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 
-" vim moce setup
-let g:move_key_modifier = 'C'
+" setup vim-move to use Ctl key
+let g:move_key_modifier  = 'C'
 
 " Syntastic
 let g:syntastic_mode_map = { 'mode': 'passive',     
-                          \ 'active_filetypes': [],     
-                          \ 'passive_filetypes': [] } 
+      \ 'active_filetypes': [],     
+      \ 'passive_filetypes': [] } 
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 let g:syntastic_auto_loc_list = 1
 
-" supertab
-let g:SuperTabDefaultCompletionType    = '<C-n>'
-let g:SuperTabCrMapping                = 0
-
-" Utilisnips
-let g:UltiSnipsExpandTrigger="<c-j>"        " Trigger snippets with TAB
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit=" vertical"
-
-"let ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+" supertab clang config defalt
 let g:ycm_global_ycm_extra_conf = '.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-
-"let g:ycm_key_list_select_completion=[]
-"let g:ycm_key_list_previous_completion=[]
-
-" vim-autoformat
-nnoremap <silent> <leader>b :Autoformat<CR>
 
 if has('mouse')		   " if there is a mouse avalible allow it
   set mouse=a
