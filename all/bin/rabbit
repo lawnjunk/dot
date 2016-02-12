@@ -10,7 +10,7 @@ sleep $2
 }
 
 clear 
-hackerText "hello neo, " 0.1
+hackerText "hello $USER, " 0.1
 sleep 1
 
 echo
