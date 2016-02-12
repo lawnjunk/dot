@@ -12,10 +12,15 @@ function delayText (){
   echo
 }
 
-[ ! "$1" = "-p" ] &&  delayText "$1" "$2" && exit 0 
+clear 
+
+[ ! "$1" = "-p" ] &&  delayText "$1" "$2" && sleep 1 && clear && exit 0 
 
 input="/dev/stdin"
 while IFS= read -r line
 do
   delayText "$line" $2
 done < "$input"
+
+sleep 1
+clear
