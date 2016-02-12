@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function hackerText(){
+numChar=$(echo $1 | wc -m | sed -e 's/^[ \t]*//')
+for c in $(seq 0 $(expr $numChar - 1 )); do
+  sleep $2
+  echo -n  "${1:$c:1}"
+done
+sleep $2
+}
+
+clear 
+hackerText "hello neo, " 0.1
+sleep 1
+
+echo
+sleep 2
+echo
+hackerText "Do you want to know the truth?  " 0.1
+sleep 0.5
+
+echo
+echo -n "> "
+read truth
+
+sleep 3
+clear 
+echo 
+sleep 1
+
+if [ $truth = y ] || [ $truth = "Y" ] || [ $truth = "yes" ]; then 
+  hackerText 'Follow the white rabit' 0.1
+  hackerText " ..." 0.2
+  sleep 2 
+else 
+  hackerText "Go back to sleep" 0.1
+  echo 
+  hackerText "neo." 0.1
+fi
+
+sleep 2
+clear
