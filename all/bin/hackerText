@@ -1,0 +1,21 @@
+#!/bin/bash
+function delayText (){
+  text=$1
+  delay=$2
+  [ ! $delay ] && delay=0.05
+  numChar=$(echo $1 | wc -m | sed -e 's/^[ \t]*//')
+  for c in $(seq 0 $(expr $numChar - 1 )); do
+      sleep $delay
+      echo -n  "${text:$c:1}"
+    done
+  sleep $delay
+  echo
+}
+
+[ ! "$1" = "-p" ] &&  delayText "$1" "$2" && exit 0 
+
+input="/dev/stdin"
+while IFS= read -r line
+do
+  delayText "$line" $2
+done < "$input"
