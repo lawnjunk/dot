@@ -9,15 +9,13 @@ if [ ! -e "$DOT_CONF" ]; then
   echo  "what uu call this box? "
   echo -n "> "
   read DOT_BOX
-fi
 
-export DOT="$HOME/.dot"
-export DOT_BOX
-export DO_OS
+  export DOT="$HOME/.dot"
+  echo "export DOT=\$HOME/.dot" > $DOT_CONF
+  echo "export DOT_OS=$DOT_OS" >> $DOT_CONF
+  echo "export DOT_BOX=$DOT_BOX" >> $DOT_CONF
+fi 
 
-echo "export DOT=\$HOME/.dot" > $DOT_CONF
-echo "export DOT_OS=$DOT_OS" >> $DOT_CONF
-echo "export DOT_BOX=$DOT_BOX" >> $DOT_CONF
-
+source $DOT_CONF
 source $DOT/bin/dot-link.sh
 source $DOT/bin/dot-init.sh
