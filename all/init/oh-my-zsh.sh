@@ -13,9 +13,3 @@ if [ ! -d "$ZSH" ]; then
     printf "Error: git clone of oh-my-zsh repo failed\n"
   }
 fi
-
-if [ ! -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]; then 
-  env git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting || {
-    printf "Error: git clone zsh-syntax-highlighting failed\n"
-  }
-fi
