@@ -1,7 +1,7 @@
 #!/bin/bash
 DOT_CONF="$HOME/.dot.conf"
 
-if [ ! -d "$DOT_CONF" ]; then 
+if [ ! -e "$DOT_CONF" ]; then 
   echo  "what operating system uu working on? "
   echo -n "> "
   read DOT_OS
