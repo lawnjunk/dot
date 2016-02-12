@@ -1,0 +1,6 @@
+#!/bin/bash
+export VOL=`osascript -e "output volume of (get volume settings)"`
+export VOL=`expr $VOL + 10` 
+[ $VOL -gt 100 ] && VOL=100
+osascript -e "set volume output volume $VOL"
+echo "volume: $VOL"
