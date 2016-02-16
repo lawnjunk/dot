@@ -1,4 +1,5 @@
 #shorts for sudo docker
+alias docker='sudo docker'
 alias dr='sudo docker'
 alias drr='sudo docker run'
 alias drp='sudo docker ps'
