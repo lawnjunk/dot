@@ -1,0 +1,63 @@
+Xft.dpi: 180
+xft.lcdfilter: lcddefault
+xft.antialias: true
+
+*faceName: Liberation Mono for Powerline:size 32:antialias=false
+!*font:sun12x22
+
+*background: #000000
+*foreground: #aaaaaa
+
+!*.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+
+
+*color0: rgb:00/00/00
+*color1: rgb:a8/00/00
+*color2: rgb:00/a8/00
+*color3: rgb:a8/54/00
+*color4: rgb:00/00/a8
+*color5: rgb:a8/00/a8
+*color6: rgb:00/a8/a8
+*color7: rgb:a8/a8/a8
+*color8: rgb:54/54/54
+*color9: rgb:fc/54/54
+*color10: rgb:54/fc/54
+*color11: rgb:fc/fc/54
+*color12: rgb:54/54/fc
+*color13: rgb:fc/54/fc
+*color14: rgb:54/fc/fc
+*color15: rgb:fc/fc/fc
+
+*faceName: monofur for powerline
+*faceSize: 14
+
+*termName: xterm-256color
+*dynamicColors:    true
+*background:       black
+*foreground:        #BBBBBB
+*utf8:             2
+*eightBitInput:    true
+*saveLines:        32767
+*scrollTtyKeypress:       true
+*scrollTtyOutput:  false
+*scrollBar:        false
+*loginShell:       true
+!*faceName:         xft:Dejavu Sans Mono:size=14
+*jumpScroll:       true
+*multiScroll:      true
+*toolBar:          false
+*geometry:         100x30
+
+UXTerm*background:   black
+UXTerm*foreground:   white
+UXTerm*cursorColor:  grey
+UXterm*locale: true
+XTerm*faceName:     xft:Liberation Mono for Powerline
+XTerm*faceSize:     11
+UXTerm*faceName: Source Code Pro for Powerline
+UXTerm*faceSize: 12
+UXTerm*VT100*translations: #override Shift <Btn1Up>: exec-formatted("firefox '%t'", PRIMARY)
+UXTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
