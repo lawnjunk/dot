@@ -24,21 +24,21 @@ if [ ! $OS ]; then
   read OS
 fi
 
-mkdir -p $DOT/os/$1/source/all
-touch $DOT/os/$1/source/all/.gitignore
-mkdir -p $DOT/os/$1/source/bash
-touch $DOT/os/$1/source/bash/.gitignore
-mkdir -p $DOT/os/$1/source/zsh
-touch $DOT/os/$1/source/zsh/.gitignore
-mkdir -p $DOT/os/$1/link
-touch $DOT/os/$1/link/.gitignore
-mkdir -p $DOT/os/$1/init
-touch $DOT/os/$1/init/.gitignore
-mkdir -p $DOT/os/$1/init/depend
-touch $DOT/os/$1/init/depend/.gitignore
-mkdir -p $DOT/os/$1/init/general
-touch $DOT/os/$1/init/general/.gitignore
-mkdir -p $DOT/os/$1/copy
-touch $DOT/os/$1/copy/.gitignore
-mkdir -p $DOT/os/$1/bin
-touch $DOT/os/$1/bin/.gitignore
+mkdir -p $DOT/os/$OS/source/all
+touch $DOT/os/$OS/source/all/.gitignore
+mkdir -p $DOT/os/$OS/source/bash
+touch $DOT/os/$OS/source/bash/.gitignore
+mkdir -p $DOT/os/$OS/source/zsh
+touch $DOT/os/$OS/source/zsh/.gitignore
+mkdir -p $DOT/os/$OS/link
+touch $DOT/os/$OS/link/.gitignore
+mkdir -p $DOT/os/$OS/init
+touch $DOT/os/$OS/init/.gitignore
+mkdir -p $DOT/os/$OS/init/depend
+touch $DOT/os/$OS/init/depend/.gitignore
+mkdir -p $DOT/os/$OS/init/general
+touch $DOT/os/$OS/init/general/.gitignore
+mkdir -p $DOT/os/$OS/copy
+touch $DOT/os/$OS/copy/.gitignore
+mkdir -p $DOT/os/$OS/bin
+touch $DOT/os/$OS/bin/.gitignore
