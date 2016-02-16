@@ -1,0 +1,6 @@
+#!/bin/bash
+export VOL=`amixer sget 'Master' |grep Left: |cut -d' ' -f 7 | tr -d "[]%"`
+export VOL=`expr $VOL - 10` 
+[ $VOL -lt 0 ] && VOL=0
+amixer sset "Master" "${VOL}%"
+echo "volume: $VOL"
