@@ -28,3 +28,14 @@ linkFilesToHome $DOT_ALL_LINK_PATH
 #sourceFilesInDir $DOT_ALL_SHELL_SOURCE_PATH
 #sourceFilesInDir $DOT_OS_SOURCE_PATH
 #sourceFilesInDir $DOT_OS_SHELL_SOURCE_PATH
+
+# clear out variables
+unset DIR_PATH
+unset SOURCE_FILES
+unset DOT_ALL_LINK_PATH
+
+# clear out functions
+unset -f backup
+unset -f linkFilesToHome
+unset -f file
+
