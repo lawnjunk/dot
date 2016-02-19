@@ -94,8 +94,7 @@ nnoremap <silent> <leader>b :Autoformat<CR>
 let g:airline_powerline_fonts = 1           " Use powerline fonts for
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-  let g:airline_theme='kolor'
+let g:airline_theme='base16'
 
 
 " setup vim-move to use Ctl key
