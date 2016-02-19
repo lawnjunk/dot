@@ -110,7 +110,6 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 let g:syntastic_auto_loc_list = 1
 
-" supertab clang config defalt
 let g:ycm_global_ycm_extra_conf = '.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 if has('mouse')		   " if there is a mouse avalible allow it
