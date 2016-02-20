@@ -3,8 +3,8 @@
 #    ├── bin
 #    ├── copy
 #    ├── init
-#    │   ├── depend
-#    │   └── general
+#    │   ├── user
+#    │   └── system
 #    ├── link
 #    └── source
 #        ├── all
@@ -34,10 +34,10 @@ mkdir -p $DOT/os/$OS/link
 touch $DOT/os/$OS/link/.gitignore
 mkdir -p $DOT/os/$OS/init
 touch $DOT/os/$OS/init/.gitignore
-mkdir -p $DOT/os/$OS/init/depend
-touch $DOT/os/$OS/init/depend/.gitignore
-mkdir -p $DOT/os/$OS/init/general
-touch $DOT/os/$OS/init/general/.gitignore
+mkdir -p $DOT/os/$OS/init/system
+touch $DOT/os/$OS/init/system/.gitignore
+mkdir -p $DOT/os/$OS/init/user
+touch $DOT/os/$OS/init/user/.gitignore
 mkdir -p $DOT/os/$OS/copy
 touch $DOT/os/$OS/copy/.gitignore
 mkdir -p $DOT/os/$OS/bin
