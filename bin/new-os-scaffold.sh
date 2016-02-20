@@ -42,3 +42,6 @@ mkdir -p $DOT/os/$OS/copy
 touch $DOT/os/$OS/copy/.gitignore
 mkdir -p $DOT/os/$OS/bin
 touch $DOT/os/$OS/bin/.gitignore
+
+# unset variables
+unset OS
