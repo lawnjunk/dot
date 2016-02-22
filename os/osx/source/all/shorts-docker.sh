@@ -3,9 +3,6 @@ alias dr='docker'
 alias drr='docker run'
 alias drp='docker ps'
 alias drpa='docker ps -a'
-alias drc='docker commit'
-alias drst='docker start'
-alias drsp='docker stop'
 alias dri='docker images'
 alias drl='docker pull'
 alias dru='docker push'
@@ -22,7 +19,7 @@ function drkilla {
 # only allow docker-machine on osx
 if [ $(uname) = "Darwin" ]; then
   alias dmr='docker-machine restart default'
-  alias dms='docker-machine start defualt'
+  alias dms='docker-machine start default'
   alias dmk='docker-machine stop default'
   alias dmenv='eval `docker-machine env default`'
   alias dmssh='docker-machine ssh default'
