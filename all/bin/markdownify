@@ -1,0 +1,17 @@
+#!/bin/bash
+mdfile="$PWD/$1"
+
+for wat in `ls -d -1 $PWD/**/*`;do
+  if [ ! $wat = $mdfile ];then 
+    if [ -d $wat ];then
+      echo "### $wat" >> $mdfile
+    fi
+    if [ -f $wat  ];then
+      echo "**$wat**" >> $mdfile
+      echo "\`\`\` javascript" >> $mdfile
+      cat $wat >> $mdfile
+      echo "\`\`\`" >> $mdfile
+      echo >> $mdfile
+    fi
+  fi
+done
