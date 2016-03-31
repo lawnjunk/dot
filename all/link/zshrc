@@ -14,3 +14,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.dot.conf
 export DOT_SHELL="zsh"
 source $DOT/bin/dot-source.sh
+
+# added by travis gem
+[ -f /Users/nacnud/.travis/travis.sh ] && source /Users/nacnud/.travis/travis.sh
