@@ -1,6 +1,5 @@
 #!/bin/bash
-for wat in `seq 1 255`; do 
-  reverse_wat=$(( 255 - wat ))
-  printf " %s %2d" "$(tput setab $wat)$(tput setaf 15) background color is"  "$wat"
-  printf " %s %2d\n" "$(tput setab 16)$(tput setaf $reverse_wat) forground color is" "$reverse_wat"
+for count in `seq 1 255`; do 
+  printf " %s %2d" "$(tput setab $count)$(tput setaf 15)                    "  "$count"
+  printf " %s %2d\n" "$(tput setab 16)$(tput setaf $count) " "$count"
 done |less -R

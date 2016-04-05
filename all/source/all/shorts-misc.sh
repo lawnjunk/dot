@@ -6,3 +6,4 @@ alias rimraf='rm -rf'
 alias grep='grep --color=always'
 alias pt='ping -c 2 google.com'
 alias slugbyte='ssh nacnud@dev.slugbyte.com'
+alias tmux="TERM=xterm-256color tmux -2"

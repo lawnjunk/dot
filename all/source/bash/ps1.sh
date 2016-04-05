@@ -1,2 +1,2 @@
 # set PS1 (prompt)
-export PS1="\[$txt_green\]\u\[$txt_white\]@\[$txt_green\]\h \[$txt_red\]\W \[$txt_cyan\]\$git_branch\[$txt_red\]\$git_dirty\[$txt_forground\]$ "
+export PS1="\[$(tput setab 7)\] \[$txt_black\]\W \[$(tput sgr0)\]\[$(tput bold)\] \[$txt_red\]\$git_branch\[$txt_white\]\$git_dirty\[$txt_white\]☞ \[$(tput sgr0)\] "
