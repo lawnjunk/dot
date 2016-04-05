@@ -1,0 +1,420 @@
+#!/usr/bin/env bash
+
+# Filename:      bashful-profile
+# Description:   Utilities for using script profiles.
+# Maintainer:    Jeremy Cantrell <jmcantrell@gmail.com>
+# Last Modified: Thu 2012-06-07 20:59:27 (-0400)
+
+# <doc:bashful-profile> {{{
+#
+# The profile library provides functions for using profiles in scripts.
+#
+# There are some pieces of info needed for profile to work well.  The most
+# important being the name of the app using it. This is provided by setting
+# either PROFILE_NAME or SCRIPT_NAME. If PROFILE_NAME is set, it will be
+# preferred over SCRIPT_NAME. Technically this is the only variable that is
+# required to function.
+#
+# It's recommended that you have also set verbose and interactive mode.
+#
+# If you intend to write new profiles with your script, a default profile
+# should be provided with the PROFILE_DEFAULT variable like this:
+#
+#     PROFILE_DEFAULT="
+#     do_some_action=1
+#     my_name='Jim Generic'
+#     some_array=(this is an array)
+#     # some_optional_var=foo
+#     "
+#
+# Any new profile will be given these values for you to change, and any
+# profile that does not specify a value for a particular variable will inherit
+# the value from the default profile. Uncommented variables are considered to
+# be required and is considered an error if any profile does not provide it.
+# Any commented variables are considered optional and will not be subject to
+# this check.
+#
+# You can also use placeholders within PROFILE_DEFAULT that will be replaced
+# when the profile is created. Currently, the only placeholders are:
+#
+#     PROFILE
+#     PROFILE_NAME
+#
+# Within PROFILE_DEFAULT, these placeholders are given as:
+#
+#     {{PROFILE}}
+#     {{PROFILE_NAME}}
+#
+# You add more placeholders by creating an array called
+# PROFILE_DEFAULT_VARIABLES. On profile creation, variables with these names
+# will be substituted.
+#
+# You can override the default config directory by setting CONFIG_DIR.
+# Otherwise, this value will be set to one of the following:
+#
+#     Run as user:    ~/.$SCRIPT_NAME
+#     Run as root:    /usr/local/etc/$SCRIPT_NAME
+#     PREFIX is set:  $PREFIX/$SCRIPT_NAME
+#
+# Certain actions (currently: create, edit, delete) allow you to add commands
+# that will be run before (pre) and/or after (post) the action. The format of
+# these hook functions are:
+#
+#     profile_<action>_<hook>()
+#     {
+#         # CODE GOES HERE
+#     }
+#
+# For example, the following function would take place after any profile is
+# created:
+#
+#     profile_create_post()
+#     {
+#         echo "Profile '$PROFILE' has been created."
+#     }
+#
+# In summary, before any functionality can be used, you must do the following:
+#
+#     source bashful-profile
+#
+#     PROFILE_NAME=myapp
+#     PROFILE_DEFAULT="..."
+#
+#     profile_init  # This will return non-zero exit code on error.
+#
+# </doc:bashful-profile> }}}
+
+if (( ${BASH_LINENO:-0} == 0 )); then
+    source bashful-doc
+    doc_execute "$0" "$@"
+    exit
+fi
+
+[[ $BASHFUL_PROFILE_LOADED ]] && return
+
+source bashful-files
+source bashful-input
+source bashful-messages
+source bashful-modes
+source bashful-utils
+
+profile_hook() #{{{1
+{
+    # <doc:profile_hook> {{{
+    #
+    # Execute a specified profile hook.
+    #
+    # Usage: profile_hook ACTION HOOK
+    #
+    # </doc:profile_hook> }}}
+
+    local command=profile_${1}_${2}
+    if type $command &>/dev/null; then
+        $command
+    fi
+}
+
+profile_actions() #{{{1
+{
+    # <doc:profile_actions> {{{
+    #
+    # Lists all available profile actions.
+    #
+    # </doc:profile_actions> }}}
+
+    actions "profile"
+}
+
+profile_choose() #{{{1
+{
+    # <doc:profile_choose> {{{
+    #
+    # Prompt user for a profile.
+    #
+    # If interactive mode is not enabled, you better have already set the
+    # profile or it's errors for everyone.
+    #
+    # </doc:profile_choose> }}}
+
+    if (( $(profile_list | wc -l) == 0 )); then
+        error "No profiles available."
+        return 0
+    fi
+
+    local OIFS=$IFS; local IFS=$'\n'
+    local profiles=($(profile_list))
+    IFS=$OIFS
+
+    local choice=$(choice -c -p "Choose profile" "${profiles[@]}")
+
+    if [[ $choice ]]; then
+        echo "$choice"
+    else
+        error "Profile not provided."
+        return 1
+    fi
+}
+
+profile_clear() #{{{1
+{
+    # <doc:profile_clear> {{{
+    #
+    # Unsets all variables from a profile.
+    #
+    # </doc:profile_clear> }}}
+
+    local var
+    for var in $(profile_variables); do
+        unset $var
+    done
+    if [[ $PROFILE_VARIABLES ]]; then
+        for var in "${PROFILE_VARIABLES[@]}"; do
+            unset $var
+        done
+    fi
+}
+
+profile_create() #{{{1
+{
+    # <doc:profile_create> {{{
+    #
+    # Creates a new profile.
+    #
+    # </doc:profile_create> }}}
+
+    [[ $PROFILE ]] || PROFILE=$(input -c -p "Enter profile" -d "${PWD##*/}")
+
+    profile_file || return 1
+
+    mkdir -p "$PROFILE_DIR"
+
+    if [[ -f $PROFILE_FILE ]]; then
+        error "Profile '$PROFILE' already exists."
+        return 1
+    fi
+
+    info -c "Creating new profile '$PROFILE'..."
+
+    profile_hook create pre
+
+    local default=$PROFILE_DEFAULT
+
+    local variables=(
+        'PROFILE'
+        'PROFILE_NAME'
+        "${PROFILE_DEFAULT_VARIABLES[@]}"
+    )
+
+    local default=$(flatten "$PROFILE_DEFAULT" "${variables[@]}")
+
+    squeeze_lines <<<"$default" >$PROFILE_FILE
+
+    if interactive; then
+        editor "$PROFILE_FILE"
+    else
+        warn -c "Profile '$PROFILE_FILE' may need to be modified."
+    fi
+
+    profile_hook create post
+}
+
+profile_delete() #{{{1
+{
+    # <doc:profile_delete> {{{
+    #
+    # Deletes an existing profile.
+    #
+    # </doc:profile_delete> }}}
+
+    profile_verify || return 1
+    question -c -p "Are you sure you want to delete '$PROFILE'?" || return 1
+    info -c "Deleting profile '$PROFILE'..."
+    profile_hook delete pre
+    rm -f "$PROFILE_FILE"
+    profile_hook delete post
+}
+
+profile_edit() #{{{1
+{
+    # <doc:profile_edit> {{{
+    #
+    # Edits an existing profile.
+    #
+    # </doc:profile_edit> }}}
+
+    profile_verify || return 1
+    profile_hook edit pre
+    editor "$PROFILE_FILE"
+    profile_hook edit post
+}
+
+profile_file() #{{{1
+{
+    # <doc:profile_file> {{{
+    #
+    # Make sure the profile file is set before continuing.
+    #
+    # </doc:profile_file> }}}
+
+    if [[ ! $PROFILE ]]; then
+        PROFILE=$(profile_choose) || return 1
+    fi
+
+    if [[ ! $PROFILE ]]; then
+        error "Profile not provided."
+        return 1
+    fi
+
+    PROFILE_FILE=$PROFILE_DIR/$PROFILE
+}
+
+profile_init() #{{{1
+{
+    # <doc:profile_init> {{{
+    #
+    # Initialize the profile environment.
+    #
+    # This function should be called in the script before any other
+    # functionality is used. If prefix was set, use that.
+    # Otherwise use a prefix appropriate for the user's permissions.
+    #
+    # </doc:profile_init> }}}
+
+    if (( EUID == 0 )); then
+        PREFIX=${PREFIX:-/usr/local}
+    else
+        PREFIX=${PREFIX:-$HOME}
+    fi
+
+    # If profile name isn't set, default to script name.
+    PROFILE_NAME=${PROFILE_NAME:-$SCRIPT_NAME}
+
+    # If neither was set, you're doing it wrong.
+    if [[ ! $PROFILE_NAME ]]; then
+        error "PROFILE_NAME/SCRIPT_NAME not set."
+        return 1
+    fi
+
+    # Depending on whether or not we have root privileges,
+    # the config directory will be in $HOME or /usr/local/etc
+    if [[ ! $CONFIG_DIR ]]; then
+        if [[ ${PREFIX%%/} == $HOME ]]; then
+            CONFIG_DIR=$PREFIX/.$PROFILE_NAME
+        else
+            CONFIG_DIR=$PREFIX/etc/$PROFILE_NAME
+        fi
+    fi
+
+    PROFILE_DIR=$CONFIG_DIR/profiles
+}
+
+profile_list() #{{{1
+{
+    # <doc:profile_list> {{{
+    #
+    # List profiles.
+    #
+    # If called with no argument and PROFILE is not set, then all profiles
+    # will be listed. If PROFILE is set, then it will be used as
+    # a pattern to filter the list. If a pattern is passed, it will override
+    # anything that PROFILE is set to.
+    #
+    # Usage: profile_list [PATTERN]
+    #
+    # Usage examples:
+    #     profile_list bash-.*  # List all profiles starting with "bash-"
+    #     profile_list .*       # Equivalent to: profile_list
+    #
+    # </doc:profile_list> }}}
+
+    local profile=${1:-$PROFILE}
+
+    listdir "$PROFILE_DIR" -type f |
+    awk -F'/' '{print $NF}' |
+    grep -v '^\.' |
+    grep "${profile:+^$profile$}" |
+    sort
+}
+
+profile_load() #{{{1
+{
+    # <doc:profile_load> {{{
+    #
+    # Load a profile.
+    #
+    # If a profile default is set, any missing settings will fallback to it.
+    # Any previous profile settings will be cleared first based on what is
+    # defined in the default profile. This is to be sure that you're not using
+    # settings from different profiles.
+    #
+    # The uncommented default profile settings are considered required, and
+    # uncommented settings are considered optional.
+    #
+    # </doc:profile_load> }}}
+
+    profile_verify || return 1
+
+    profile_hook load pre
+
+    profile_clear
+
+    eval "$PROFILE_DEFAULT"; source $PROFILE_FILE
+
+    # If any required setting is unset, you're getting an error.
+    local var
+    for var in $(profile_variables_required); do
+        if [[ ! ${!var} ]]; then
+            error "Variable '$var' is not set for profile '$profile'."
+            return 1
+        fi
+    done
+
+    export PROFILE
+    for var in $(profile_variables); do
+        export $var
+    done
+
+    profile_hook load post
+}
+
+profile_variables() #{{{1
+{
+    # <doc:profile_variables> {{{
+    #
+    # List all variables available to a profile (set or not).
+    #
+    # </doc:profile_variables> }}}
+
+    variables <<<"$PROFILE_DEFAULT"
+}
+
+profile_variables_required() #{{{1
+{
+    # <doc:profile_variables_required> {{{
+    #
+    # List all required variables available to a profile (set or not).
+    #
+    # </doc:profile_variables_required> }}}
+
+    grep -v '^[[:space:]]*#' <<<"$PROFILE_DEFAULT" | variables
+}
+
+profile_verify() #{{{1
+{
+    # <doc:profile_verify> {{{
+    #
+    # Make sure the profile file exists before continuing.
+    #
+    # </doc:profile_verify> }}}
+
+    profile_file || return 1
+
+    if [[ ! -f $PROFILE_FILE ]]; then
+        error "Profile '$PROFILE' does not exist or not a regular file."
+        return 1
+    fi
+}
+
+#}}}1
+
+BASHFUL_PROFILE_LOADED=1

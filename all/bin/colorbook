@@ -1,0 +1,5 @@
+#!/bin/bash
+for count in `seq 1 255`; do 
+  printf " %s %2d" "$(tput setab $count)$(tput setaf 15)                    "  "$count"
+  printf " %s %2d\n" "$(tput setab 16)$(tput setaf $count) " "$count"
+done |less -R

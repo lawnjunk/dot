@@ -1,0 +1,10 @@
+#!/bin/bash 
+file="$1"
+start_line="$2"
+end_line="$3"
+
+num_lines=$( wc -l "$file" |cut -d ' ' -f 7)
+end_line=$((end_line - start_line + 1)) 
+start_line=$((num_lines - start_line + 1))
+
+tail -n $start_line $file |head -n $end_line

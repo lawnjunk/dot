@@ -1,0 +1,6 @@
+#!/bin/bash
+html='<!DOCTYPE html>\n<html>\n  <head>\n    <title></title>\n  </head>\n  <body>\n  <script src="js/app.js" type="text/javascript"></script>\n  </body>\n</html>'
+echo -e "$html" > index.html
+mkdir js css
+echo "'use strict';" > js/app.js
+touch css/style.css

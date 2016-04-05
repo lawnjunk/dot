@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+file=$1
+lang=$2
+
+echo "**$file**"
+echo "\`\`\` $lang   "
+cat $file
+echo "\`\`\`   "
+echo 
