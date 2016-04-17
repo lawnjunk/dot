@@ -1,3 +1,3 @@
 backup() {
-	mv "$1" "$1.bak"
+	mv "$1" "$1.backup"
 }
