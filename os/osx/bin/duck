@@ -1,0 +1,5 @@
+#!/bin/bash
+
+query=$(echo "$@" |tr ' ' '+')
+open "http://duckduckgo.com?q=$query"
+

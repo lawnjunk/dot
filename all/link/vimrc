@@ -10,42 +10,35 @@ Plugin 'gmarik/Vundle.vim'
 
 " default
 Plugin 'L9'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" UI n stuff 
+" UI n stuff
 Plugin 'flazz/vim-colorschemes'
-Plugin 'airblade/vim-gitgutter'  
-Plugin 'bling/vim-airline'  
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline'
+"Plugin 'ap/vim-css-color'
+Plugin 'airblade/vim-gitgutter'
 
-" y not type less
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'scrooloose/syntastic'
+" auto complete
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'slugbyte/neosnippet-snippets'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'fatih/vim-go'
+Plugin 'mattn/emmet-vim'
+
+" edit and format
+Plugin 'matze/vim-move'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'isRuslan/vim-es6'
-
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-
-
-" better syntax
-"Plugin 'jelera/vim-javascript-syntax'
-
-" file nav
-Plugin 'kien/ctrlp.vim'
-
-" handy tools
-Plugin 'matze/vim-move' 
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
-Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'terryma/vim-multiple-cursors'
 
-" version vontrol 
-Plugin 'tpope/vim-rhubarb'
+" handy tools
+Plugin 'majutsushi/tagbar'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,9 +48,9 @@ filetype plugin indent on    " required
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
 set incsearch             " vim starts searching while typing search string
-set expandtab
-set tabstop=2             " tabset three spaces
-set shiftwidth=2          " tabset three space
+set expandtab             " tabs are spaces
+set tabstop=2             " tabset two spaces
+set shiftwidth=2          " tabset two space
 set ff=mac                " set file format to mac
 syntax enable             " syntax always on
 set wildmenu              " enable tab completion
@@ -68,38 +61,41 @@ set ruler                 " allways show the current position
 set laststatus=2          " allways show the status line
 set cursorline            " allways show a line where the curser is
 colorscheme jellybeans    " set the color scheme
-set undodir=~/.vim/undoHist
-set undofile
+"set undodir=~/.vim/undoHist
+"set undofile
 
-" Key Bindings
+" allow mouse use if supported
+if has('mouse')
+  set mouse=a
+endif
+
+" map double i to esc and <space> to leader
 imap ii <Esc>
 let mapleader = "\<Space>"
+
+" easy jump to beg/end of line
 noremap H ^
 noremap L $
 
-" copy and paste from clipboard 
-map <leader>cp "+y
-map <leader>cv "+p
+" copy and paste from clipboard
+map <leader>y "+y
+map <leader>p "+p
 
 " leader s = syntastic
-nnoremap <silent> <leader>s :SyntasticCheck<CR>  
+nnoremap <silent> <leader>s :SyntasticCheck<CR>
 
-" leader sp = set paste 
+" set paste and no pase
 nnoremap <silent> <leader>sp :set paste<CR>
-
-" leader sn = set nopaste
 nnoremap <silent> <leader>sn :set nopaste<CR>
-
-" leader p = control p
-nnoremap <silent> <leader>p :CtrlPMixed<CR>
 
 " vim-autoformat
 nnoremap <silent> <leader>b :Autoformat<CR>
 
 " Vim-Airline
-let g:airline_powerline_fonts = 1           " Use powerline fonts for
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 
 
@@ -107,17 +103,44 @@ let g:airline_theme='base16'
 let g:move_key_modifier  = 'C'
 
 " Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive',     
-      \ 'active_filetypes': [],     
-      \ 'passive_filetypes': [] } 
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_mode_map = { 'mode': 'passive',
+"\ 'active_filetypes': [],
+"\ 'passive_filetypes': [] }
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
-let g:syntastic_auto_loc_list = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-let g:ycm_global_ycm_extra_conf = '.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq   = 0
 
-if has('mouse')		   " if there is a mouse avalible allow it
-  set mouse=a
-endif
+"tagbar
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+
+
+" setup neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-g>     neocomplete#undo_completion()
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" emmit vim
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<C-K>'
+autocmd FileType html,css EmmetInstall
+
+" go mappings
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gs <Plug>(go-def)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>t <Plug>(go-test)
