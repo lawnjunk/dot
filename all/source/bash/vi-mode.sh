@@ -7,4 +7,3 @@ bind -m vi-insert "\C-e":end-of-line
 bind -m vi-insert "\C-a.":beginning-of-line
 bind -m vi-insert "C-w.":backward-kill-word
 bind -m vi-insert "tab":complete
-
