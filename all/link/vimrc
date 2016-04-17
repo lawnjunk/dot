@@ -15,7 +15,7 @@ Plugin 'L9'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'ap/vim-css-color'
+Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
 
 " auto complete
@@ -95,7 +95,6 @@ nnoremap <silent> <leader>b :Autoformat<CR>
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 
 
@@ -103,10 +102,13 @@ let g:airline_theme='base16'
 let g:move_key_modifier  = 'C'
 
 " Syntastic
-"let g:syntastic_mode_map = { 'mode': 'passive',
-"\ 'active_filetypes': [],
-"\ 'passive_filetypes': [] }
 let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_bash_shellcheck_args = "-s bash" 
+let g:syntastic_sh_shellcheck_args = "-s bash" 
+let g:syntastic_bash_checkers = ['shellcheck']
+let g:syntastic_sh_checkers = ['shellcheck']
+
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 set statusline+=%#warningmsg#
