@@ -1,6 +1,7 @@
 dot
 ===
 multi box configuration automation
+[![Stories in Ready](https://badge.waffle.io/slugbyte/dot.svg?label=ready&title=Ready)](http://waffle.io/slugbyte/dot)
 
 # Introduction
 When I work on a box that ain't setup ma-way, I feel disoriented and
