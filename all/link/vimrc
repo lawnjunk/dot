@@ -11,12 +11,12 @@ Plugin 'gmarik/Vundle.vim'
 " default
 Plugin 'L9'
 
-" UI n stuff 
+" UI n stuff
 Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-airline/vim-airline'  
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ap/vim-css-color'
-Plugin 'airblade/vim-gitgutter'  
+"Plugin 'ap/vim-css-color'
+Plugin 'airblade/vim-gitgutter'
 
 " auto complete
 Plugin 'Shougo/neocomplete.vim'
@@ -27,13 +27,14 @@ Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 
 " edit and format
-Plugin 'matze/vim-move' 
+Plugin 'matze/vim-move'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 
 " handy tools
+Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
@@ -47,9 +48,9 @@ filetype plugin indent on    " required
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
 set incsearch             " vim starts searching while typing search string
-set expandtab
-set tabstop=2             " tabset three spaces
-set shiftwidth=2          " tabset three space
+set expandtab             " tabs are spaces
+set tabstop=2             " tabset two spaces
+set shiftwidth=2          " tabset two space
 set ff=mac                " set file format to mac
 syntax enable             " syntax always on
 set wildmenu              " enable tab completion
@@ -76,12 +77,12 @@ let mapleader = "\<Space>"
 noremap H ^
 noremap L $
 
-" copy and paste from clipboard 
+" copy and paste from clipboard
 map <leader>y "+y
 map <leader>p "+p
 
 " leader s = syntastic
-nnoremap <silent> <leader>s :SyntasticCheck<CR>  
+nnoremap <silent> <leader>s :SyntasticCheck<CR>
 
 " set paste and no pase
 nnoremap <silent> <leader>sp :set paste<CR>
@@ -102,9 +103,9 @@ let g:airline_theme='base16'
 let g:move_key_modifier  = 'C'
 
 " Syntastic
-"let g:syntastic_mode_map = { 'mode': 'passive',     
-      "\ 'active_filetypes': [],     
-      "\ 'passive_filetypes': [] } 
+"let g:syntastic_mode_map = { 'mode': 'passive',
+"\ 'active_filetypes': [],
+"\ 'passive_filetypes': [] }
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
@@ -112,10 +113,14 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq   = 0
+
+"tagbar
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+
 
 " setup neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -131,3 +136,11 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-K>'
 autocmd FileType html,css EmmetInstall
+
+" go mappings
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gs <Plug>(go-def)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>t <Plug>(go-test)

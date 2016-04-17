@@ -8,7 +8,7 @@ function contains(){
   fi
 }
 
-DOT_BIN_PATHS=$DOT/bin:$DOT/all/bin:$DOT/os/$DOT_OS/bin:$HOME/.node/bin:$HOME/.go/bin:$HOME/gitz/gospace/bin
+DOT_BIN_PATHS=$DOT/bin:$DOT/all/bin:$DOT/os/$DOT_OS/bin:$HOME/.node/bin:$HOME/.go/bin:$HOME/gitz/go/bin
 contains $PATH $DOT_BIN_PATHS 
 
 if [ $? -ne 0 ];then
