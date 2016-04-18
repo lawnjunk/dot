@@ -8,7 +8,11 @@ function contains(){
   fi
 }
 
-DOT_BIN_PATHS="$DOT/bin:$DOT/all/bin:$DOT/os/$DOT_OS/bin:$HOME/.node/bin:$HOME/.go/bin:$HOME/gitz/go/bin"
+DOT_BIN_PATHS="$DOT/bin:$DOT/all/bin:$DOT/os/$DOT_OS/bin"
+DOT_BIN_PATHS="$DOT_BIN_PATHS:$HOME/.node/$V_NODE_VERSION/bin"
+DOT_BIN_PATHS="$DOT_BIN_PATHS:$HOME/.go/$V_GO_VERSION/bin:$HOME/gitz/go/$V_GO_VERSION/bin"
+DOT_BIN_PATHS="$DOT_BIN_PATHS:$HOME/.bash/$V_BASH_VERSION/bin"
+DOT_BIN_PATHS="$DOT_BIN_PATHS:/usr/local/bin"
 
 contains $PATH $DOT_BIN_PATHS 
 
