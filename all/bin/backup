@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+backup() {
+  mv "$1" "$1.backup"
+}
+
+backup "$1"
