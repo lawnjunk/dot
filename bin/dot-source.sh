@@ -1,15 +1,21 @@
 # sourcing files in $DOT/ALL/all $DOT/ALL/$DOT_SHELL and $DOT/$DOT_OS/all $DOT/$DOT_OS/$DOT_SHELL
 source ~/.dot.conf
 
+debug_log(){
+  if [[ $DOT_DEBUG ]];then
+    echo "$@"
+  fi
+}
+
 function sourceFilesInDir(){
   DIR_PATH="$1"
   if [ -d "$DIR_PATH" ];then 
     SOURCE_FILES=$(ls $DIR_PATH)
 
     if [ "$SOURCE_FILES" ]; then 
-      echo "DOT sourcing files in $DIR_PATH"
+      debug_log "DOT sourcing files in $DIR_PATH"
       for file in $(ls $DIR_PATH);do
-        echo "   loading: $file"
+        debug_log "   loading: $file"
         source $DIR_PATH/$file
       done
     fi
