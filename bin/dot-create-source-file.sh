@@ -9,6 +9,9 @@ debug_log(){
 
 source_file="$HOME/.source_file"
 
+[[ -e "$source_file" ]] && rm "$source_file"
+touch "$source_file"
+
 function sourceFilesInDir(){
   DIR_PATH="$1"
   if [ -d "$DIR_PATH" ];then 
@@ -20,7 +23,7 @@ function sourceFilesInDir(){
       cd $DIR_PATH
       for file in ./* ;do
         debug_log "   loading: $DIR_PATH/$file"
-        source "$DIR_PATH/$file" 
+        cat "$DIR_PATH/$file" >> "$source_file"
       done
       popd > /dev/null
     fi

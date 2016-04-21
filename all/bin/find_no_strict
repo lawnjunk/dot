@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+shopt -s globstar
+
+for file in **/*.js;do
+  first_line=$(head -n 1 "$file")
+  result=$(echo "$first_line" | grep "use strict")
+  if [[ ! $result ]];then 
+    echo "$file"
+  fi
+done

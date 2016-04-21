@@ -15,7 +15,7 @@ Plugin 'L9'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'ap/vim-css-color'
+Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
 
 " auto complete
@@ -143,3 +143,9 @@ au FileType go nmap <Leader>gs <Plug>(go-def)
 au FileType go nmap <Leader>r <Plug>(go-run)
 au FileType go nmap <Leader>b <Plug>(go-build)
 au FileType go nmap <Leader>t <Plug>(go-test)
+
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
