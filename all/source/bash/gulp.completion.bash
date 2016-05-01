@@ -10,7 +10,7 @@
 # To enable bash <tab> completion for gulp, add the following line (minus the
 # leading #, which is the bash comment character) to your ~/.bashrc file:
 #
-# eval "$(gulp --completion=bash)"
+eval "$(gulp --completion=bash)"
 # Enable bash autocompletion.
 function _gulp_completions() {
 # The currently-being-completed word.
