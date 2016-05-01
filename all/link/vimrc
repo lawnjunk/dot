@@ -15,13 +15,11 @@ Plugin 'L9'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ap/vim-css-color'
+"Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
 
 " auto complete
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'slugbyte/neosnippet-snippets'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
@@ -31,12 +29,11 @@ Plugin 'matze/vim-move'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
-"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 
 " handy tools
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 
@@ -104,21 +101,17 @@ let g:move_key_modifier  = 'C'
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_bash_shellcheck_args = "-s bash" 
 let g:syntastic_sh_shellcheck_args = "-s bash" 
 let g:syntastic_bash_checkers = ['shellcheck']
 let g:syntastic_sh_checkers = ['shellcheck']
 
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq   = 0
+let g:syntastic_check_on_open = 1
 
 "tagbar
 nnoremap <silent> <leader>t :TagbarToggle<CR>
