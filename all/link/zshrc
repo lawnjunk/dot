@@ -17,3 +17,6 @@ source $DOT/bin/dot-source.sh
 
 # added by travis gem
 [ -f /Users/nacnud/.travis/travis.sh ] && source /Users/nacnud/.travis/travis.sh
+
+# added by travis gem
+[ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh

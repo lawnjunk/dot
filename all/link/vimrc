@@ -17,12 +17,14 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-scripts/SpellCheck'
 
 " auto complete
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
+Plugin 'isRuslan/vim-es6'
 
 " edit and format
 Plugin 'matze/vim-move'
@@ -35,7 +37,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

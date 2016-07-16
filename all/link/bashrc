@@ -2,7 +2,19 @@
 #export GITAWAREPROMPT=$HOME/.sh/git-aware-prompt
 #source "${GITAWAREPROMPT}/main.sh"
 
+# setup tool version env vars
+export V_NODE_VERSION="v4.4.4"
+export V_BASH_VERSION="v4.3"
+export V_GO_VERSION="V1.6"
+
 #    ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
 source ~/.dot.conf
 export DOT_SHELL="bash"
 source $DOT/bin/dot-source.sh
+
+if [[ ! "$TMUX" ]];then 
+  tmux -2 -S /tmp/tmux-session
+fi
+
+# added by travis gem
+[ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh
