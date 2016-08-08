@@ -18,6 +18,7 @@ Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'ap/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-scripts/SpellCheck'
+Plugin 'kien/rainbow_parentheses.vim'
 
 " auto complete
 Plugin 'Shougo/neocomplete.vim'
@@ -25,6 +26,7 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'isRuslan/vim-es6'
+Plugin 'jpalardy/vim-slime'
 
 " edit and format
 Plugin 'matze/vim-move'
@@ -37,6 +39,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'majutsushi/tagbar'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
+Plugin 'sbl/scvim'
 "Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
@@ -141,3 +144,34 @@ au FileType go nmap <Leader>gs <Plug>(go-def)
 au FileType go nmap <Leader>r <Plug>(go-run)
 au FileType go nmap <Leader>b <Plug>(go-build)
 au FileType go nmap <Leader>t <Plug>(go-test)
+
+" sc lang 
+let g:sclangTerm = "open -a iTerm.app"
+let g:sclangPipeApp     = "~/.vim/bundle/scvim/bin/start_pipe"
+let g:sclangDispatcher  = "~/.vim/bundle/scvim/bin/sc_dispatcher"
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+
+" vim slime
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}

@@ -1,3 +1,3 @@
 shopt -s extglob
 shopt -s nullglob
-shopt -s globstar
+#shopt -s globstar
