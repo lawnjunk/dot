@@ -3,7 +3,7 @@
 #source "${GITAWAREPROMPT}/main.sh"
 
 # setup tool version env vars
-export V_NODE_VERSION="v4.4.4"
+export V_NODE_VERSION="v4.4.7"
 export V_BASH_VERSION="v4.3"
 export V_GO_VERSION="V1.6"
 

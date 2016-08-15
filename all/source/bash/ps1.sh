@@ -30,3 +30,4 @@ ps1_git="$(get_ps1_section ' ${git_branch}$(tput setaf 15)${git_dirty}' 9 0)"
 ps1_end='\n\m \[$(tput setaf 15)\]☞ \[$(tput sgr0) '
 
 export PS1="${ps1_dir}${ps1_ttys}${ps1_pid}${ps1_jobs}${ps1_git}${ps1_end}"
+# export PS1="\W \l \j \$ "

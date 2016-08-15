@@ -1,0 +1,133 @@
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+
+(global-linum-mode)  ;; line numbers
+(load-theme 'wombat) ;; set colorscheme
+(scroll-bar-mode -1) ;; no scroll bars
+(tool-bar-mode -1)   ;; no buttons at top of frame
+(setq ring-bell-function 'ignore) ;; shutup the bell
+(setq inhibit-startup-message 1) ;; no startup message
+(set-face-attribute 'default nil :height 160) ;; set font size
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+;; add brew to emacs path
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
+;; act like vim
+(require 'evil)
+(evil-mode 1)
+(setq-default evil-shift-width 2)
+
+;; powerline
+(require 'powerline)
+(powerline-default-theme)
+
+;; webmode
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-markup-indent-offset 2)
+;; enable double tap key bindings
+(key-chord-mode 1)
+
+;; map my vim bindings
+(key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
+(define-key evil-normal-state-map"L" 'evil-end-of-line)
+(define-key evil-visual-state-map "L" 'evil-end-of-line)
+(define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+(define-key evil-visual-state-map "H" 'evil-beginning-of-line)
+
+;; map <SPC> to leader
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
+
+(evil-leader/set-key 
+  "cc" 'evilnc-comment-or-uncomment-lines
+  "t" 'neotree-toggle
+  "fw" 'paredit-forward
+  "bw" 'paredit-backward
+  "fu" 'paredit-forward-up
+  "bu" 'paredit-backward-up
+  "fd" 'paredit-forward-down
+  "bd" 'paredit-backward-down
+  "dd" 'paredit-kill
+  "df" 'paredit-forward-kill-word
+  "db" 'paredit-backward-kill-word
+  "ww" 'paredit-wrap-round
+  "se" 'paredit-splice-sexp
+  "st" 'paredit-split-sexp
+  "jj" 'paredit-join-sexps
+  "sf" 'paredit-forward-slurp-sexp
+  "sb" 'paredit-backward-slurp-sexp
+  "bf" 'paredit-forward-barf-sexp
+  "bb" 'paredit-backward-barf-sexp
+)
+
+;; leader paredit bindings why not worn?
+;; (evil-leader/set-key-for-mode 'paredit-mode) 
+
+;; nerd commenter
+;; also cc in leader ^
+(global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+
+;; auto complete
+(ac-config-default)
+(setq ac-auto-start 1) ;; start auto-complete after 1 character
+(setq ac-auto-show-menu 0.2) ;; show menu after 0.1 sec
+(set-face-background 'ac-candidate-face "black")
+(set-face-underline 'ac-candidate-face "black")
+(set-face-foreground 'ac-candidate-face "white")
+(set-face-background 'ac-selection-face "#ff7a7a")
+(set-face-foreground 'ac-selection-face "black")
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+
+;; neotree
+(add-hook 'neotree-mode-hook
+  (lambda ()
+    (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+    (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+    (define-key evil-normal-state-local-map (kbd "RET") 'neotree-change-root)))
+
+;; rainbow-delimiters-mode
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; slime config
+(setq inferior-lisp-program "/usr/local/bin/clisp")
+(setq slime-contribs '(slime-fancy))
+
+;; multi-term
+(require 'multi-term)
+(setq multi-term-program "/usr/local/bin/zsh")
+
+;; tern and js2 mode
+(add-to-list 'load-path "/Users/slugbyte/bldz/tern/emacs")
+(autoload 'tern-mode "tern.el" nil t)
+
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(js2-basic-offset 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

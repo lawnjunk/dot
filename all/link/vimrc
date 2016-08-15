@@ -27,6 +27,7 @@ Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'isRuslan/vim-es6'
 Plugin 'jpalardy/vim-slime'
+Plugin 'slugbyte/slimv'
 
 " edit and format
 Plugin 'matze/vim-move'
@@ -160,7 +161,7 @@ let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['brown',       'firebrick3'],
     \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
+    \ ['green',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['Darkblue',    'firebrick3'],
     \ ['darkgreen',   'RoyalBlue3'],
@@ -171,7 +172,12 @@ let g:rbpt_colorpairs = [
 
 let g:rbpt_max = 16
 au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " vim slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+
+    let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/slime/start-swank.lisp\""'
