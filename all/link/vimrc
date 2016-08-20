@@ -50,6 +50,7 @@ filetype plugin indent on    " required
 " general conf
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
+set relativenumber
 set incsearch             " vim starts searching while typing search string
 set expandtab             " tabs are spaces
 set tabstop=2             " tabset two spaces

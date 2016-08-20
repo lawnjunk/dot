@@ -4,6 +4,11 @@ export ZSH=$HOME/.oh-my-zsh
 # setup zsh-complettions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+# setup too version env vars
+export V_NODE_VERSION="v4.4.4"
+export V_BASH_VERSION="v4.3"
+export V_GO_VERSION="V1.6"
+
 # load oh-my-zsh plugins
 plugins=(git)
 plugins=(colorize)
@@ -17,6 +22,3 @@ source $DOT/bin/dot-source.sh
 
 # added by travis gem
 [ -f /Users/nacnud/.travis/travis.sh ] && source /Users/nacnud/.travis/travis.sh
-
-# added by travis gem
-[ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh
