@@ -1,0 +1,99 @@
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
+
+" lang
+Plug 'fatih/vim-go'
+Plug 'mattn/emmet-vim'
+Plug 'isRuslan/vim-es6'
+Plug 'jpalardy/vim-slime'
+Plug 'slugbyte/slimv'
+
+" edit and format
+Plug 'matze/vim-move'
+Plug 'Chiel92/vim-autoformat'
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
+
+" hay tools
+Plug 'majutsushi/tagbar'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'tpope/vim-fugitive'
+Plug 'sbl/scvim'
+function! BuildTern(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !npm i
+  endif
+endfunction
+Plug 'ternjs/tern_for_vim', {'do': function('BuildTern') }
+Plug 'carlitux/deoplete-ternjs'
+call plug#end()
+
+
+" enable tab competion
+call deoplete#enable()
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" setup defaults
+set noswapfile
+set backspace=2           " make backspace work like all other apps
+set number                " turn on the line numbers
+set relativenumber
+set incsearch             " vim starts searching while typing search string
+set expandtab             " tabs are spaces
+set tabstop=2             " tabset two spaces
+set shiftwidth=2          " tabset two space
+set wildmenu              " enable tab completion
+set wildmode=list:longest " configure tab completion
+set ruler                 " allways show the current position
+set laststatus=2          " allways show the status line
+set cursorline            " allways show a line where the curser is
+syntax enable             " syntax always on
+colorscheme jellybeans    " set the color scheme
+
+" map double i to esc and <space> to leader
+imap ii <Esc>
+let mapleader = "\<Space>"
+
+" set paste and no pase
+nnoremap <silent> <leader>sp :set paste<CR>
+nnoremap <silent> <leader>sn :set nopaste<CR>
+
+" eash end-line jump
+noremap H ^
+noremap L $
+
+" quick reload vim config
+command! Reload source ~/.nvimrc
+
+" Vim-Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline_theme='base16'
+
+" emmit vim
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<C-K>'
+autocmd FileType html,css EmmetInstall
+
+" setup vim-move to use Ctl key
+let g:move_key_modifier  = 'C'
+
+" Shortcut to rapidly toggle `set list`
+" set list displays invisible chars
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬ 
+
+
