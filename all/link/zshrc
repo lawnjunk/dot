@@ -12,5 +12,18 @@ source ~/.dot.conf
 export DOT_SHELL="zsh"
 source $DOT/bin/dot-source.sh
 
-alias v="nvim"
-alias vim="nvim"
+function vim() {
+  args=()
+  for i in $@; do
+    if [[ -h $i ]]; then
+      args+=`readlink $i`
+    else
+      args+=$i
+    fi
+  done
+
+  nvim -p "${args[@]}"
+}
+
+alias v="vim"
+
