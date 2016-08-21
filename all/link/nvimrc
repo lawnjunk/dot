@@ -46,6 +46,7 @@ call deoplete#enable()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " setup defaults
+set noswapfile
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
 set relativenumber
@@ -68,6 +69,13 @@ let mapleader = "\<Space>"
 " set paste and no pase
 nnoremap <silent> <leader>sp :set paste<CR>
 nnoremap <silent> <leader>sn :set nopaste<CR>
+
+" eash end-line jump
+noremap H ^
+noremap L $
+
+" quick reload vim config
+command! Reload source ~/.nvimrc
 
 " Vim-Airline
 let g:airline_powerline_fonts = 1
