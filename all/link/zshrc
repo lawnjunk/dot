@@ -26,4 +26,4 @@ function vim() {
 }
 
 alias v="vim"
-
+nvm use 6

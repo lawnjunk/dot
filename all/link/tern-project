@@ -4,6 +4,9 @@
     "jquery"
   ],
   "plugins": {
-      "node": {}
+      "node": {},
+      "angular": {},
+      "modules": {},
+      "es_modules": {}
     }
 }
