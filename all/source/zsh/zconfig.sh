@@ -47,9 +47,9 @@ vim_ins_mode="%{$fg_bold[green]%}-- INSERT --%{$reset_color%}%"
 vim_nrm_mode="%{$fg_bold[red]%}-- NORMAL --%{$reset_color%}%"
 
 function zle-line-init zle-keymap-select {
-RPS1="${${KEYMAP/vicmd/$vim_nrm_mode}/(main|viins)/$vim_ins_mode}"
-		RPS2=$RPS1
-		zle reset-prompt
+  RPS1="${${KEYMAP/vicmd/$vim_nrm_mode}/(main|viins)/$vim_ins_mode} %{$fg[magenta]%} $(git_prompt_info) $(git_prompt_status) %{$reset_color%}"
+  RPS2=$RPS1
+  zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
@@ -70,12 +70,14 @@ ZSH_HIGHLIGHT_STYLES[command]=none
 ZSH_HIGHLIGHT_STYLES[builtin]=none
 ZSH_HIGHLIGHT_STYLES[function]=none
 ZSH_HIGHLIGHT_STYLES[alias]=none
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=red
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=red
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=cyan,bold
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=green
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green,bold
 ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=fg=magenta
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=blue 
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=yellow
 ZSH_HIGHLIGHT_STYLES[path]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=yellow
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=yellow

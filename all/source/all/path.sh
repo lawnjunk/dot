@@ -1,5 +1,2 @@
 USER_PATH="$DOT/os/$DOT_OS/bin:$DOT/all/bin:$DOT/bin"
-USER_PATH="$USER_PATH:$HOME/.node/$V_NODE_VERSION/bin"
-USER_PATH="$USER_PATH:$HOME/.go/$V_GO_VERSION/bin:$HOME/gitz/go/$V_GO_VERSION/bin"
-USER_PATH="$USER_PATH:$HOME/.bash/$V_BASH_VERSION/bin"
 export PATH="$USER_PATH:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin"

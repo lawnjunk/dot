@@ -1,15 +1,8 @@
 # shorts for git
 alias ga='git add -A'
 alias gb='git branch -a'
-alias gu="git remote update -p"
 alias gc='git commit -a -m'
 alias gs='git status'
 alias gp='git push origin'
 alias gl='git pull origin'
-alias gpu='git push upstream'
-alias glu='git pull upstream'
 alias gch='git checkout'
-alias glog='git log --graph --max-count=10'
-alias gd='git diff'
-alias gm='git merge'
-alias gr='git reset'
