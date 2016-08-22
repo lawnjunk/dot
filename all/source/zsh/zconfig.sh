@@ -55,18 +55,18 @@ fi
 
 # config zsh highlight colors
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
-ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=246,bold
 ZSH_HIGHLIGHT_STYLES[builtin]=fg=white,bold
 ZSH_HIGHLIGHT_STYLES[function]=fg=white,bold
 ZSH_HIGHLIGHT_STYLES[alias]=fg=white,bold
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=cyan,bold
 ZSH_HIGHLIGHT_STYLES[globbing]=fg=green
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=magenta
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green,bold
 ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=fg=magenta
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=yellow
-ZSH_HIGHLIGHT_STYLES[path]=fg=cyan
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=yellow
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=111
+ZSH_HIGHLIGHT_STYLES[path]=fg=48
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=69
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=111
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=111
