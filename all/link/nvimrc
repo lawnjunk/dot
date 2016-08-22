@@ -6,6 +6,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
+Plug 'Yggdroot/indentLine'
 
 " lang
 Plug 'fatih/vim-go'
@@ -20,6 +21,8 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'neomake/neomake'
+Plug 'jaawerth/neomake-local-eslint-first'
 
 " hay tools
 Plug 'majutsushi/tagbar'
@@ -42,14 +45,15 @@ call plug#end()
 
 
 " enable tab competion
-call deoplete#enable()
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " setup defaults
 set noswapfile
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
-set relativenumber
+"set relativenumber
 set incsearch             " vim starts searching while typing search string
 set expandtab             " tabs are spaces
 set tabstop=2             " tabset two spaces
@@ -94,6 +98,20 @@ let g:move_key_modifier  = 'C'
 " Shortcut to rapidly toggle `set list`
 " set list displays invisible chars
 nmap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬ 
+set listchars=tab:▸\ ,eol:¬
 
+" neomake
+let g:neomake_javascript_eslint_exe = nrun#Which('eslint')
+let g:neomake_javascript_enabled_makers = ['eslint']
 
+"autocmd! BufWrite * Neomake
+"autocmd FileType javascript, BufWrite nnoremap <buffer> <localleader>f Vatzf
+autocmd! BufWrite *.js Neomake
+hi NeomakeErrorSign ctermfg=white
+
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_char = '│'
+let g:indentLine_first_char = '│'
+let g:indentLine_color_term = 237

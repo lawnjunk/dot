@@ -42,17 +42,6 @@ bindkey '^e' vi-end-of-line          # cta e jumps to end of line insert mode
 bindkey -a '^e' vi-end-of-line       # cta e jumps to end of line normal mode
 bindkey '^r' history-incremental-pattern-search-backward
 
-# set RPROMPT to vi mode 
-vim_ins_mode="%{$fg_bold[green]%}-- INSERT --%{$reset_color%}%"
-vim_nrm_mode="%{$fg_bold[red]%}-- NORMAL --%{$reset_color%}%"
-
-function zle-line-init zle-keymap-select {
-  RPS1="${${KEYMAP/vicmd/$vim_nrm_mode}/(main|viins)/$vim_ins_mode} %{$fg[magenta]%} $(git_prompt_info) $(git_prompt_status) %{$reset_color%}"
-  RPS2=$RPS1
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 # C-x C-e edit this command in vim 
 autoload -U edit-command-line
@@ -66,10 +55,10 @@ fi
 
 # config zsh highlight colors
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
-ZSH_HIGHLIGHT_STYLES[command]=none
-ZSH_HIGHLIGHT_STYLES[builtin]=none
-ZSH_HIGHLIGHT_STYLES[function]=none
-ZSH_HIGHLIGHT_STYLES[alias]=none
+ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[function]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[alias]=fg=white,bold
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=cyan,bold
 ZSH_HIGHLIGHT_STYLES[globbing]=fg=green
 ZSH_HIGHLIGHT_STYLES[path_pathseparator]=fg=magenta

@@ -1,5 +1,5 @@
 export ZSH=/Users/slugbyte/.oh-my-zsh
-ZSH_THEME="theunraveler"
+#ZSH_THEME="theunraveler"
 DISABLE_AUTO_UPDATE="true"
 plugins=(git git-extras docker httpie zsh-syntax-highlighting) 
 
