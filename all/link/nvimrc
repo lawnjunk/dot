@@ -49,7 +49,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 set noswapfile
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
-"set relativenumber
+set relativenumber
 set incsearch             " vim starts searching while typing search string
 set expandtab             " tabs are spaces
 set tabstop=2             " tabset two spaces
@@ -60,7 +60,7 @@ set ruler                 " allways show the current position
 set laststatus=2          " allways show the status line
 set cursorline            " allways show a line where the curser is
 syntax enable             " syntax always on
-colorscheme jellybeans    " set the color scheme
+colorscheme hybrid_reverse" set the color scheme
 
 " map double i to esc and <space> to leader
 imap ii <Esc>
