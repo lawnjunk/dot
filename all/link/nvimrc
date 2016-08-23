@@ -13,6 +13,8 @@ Plug 'fatih/vim-go'
 Plug 'mattn/emmet-vim'
 Plug 'isRuslan/vim-es6'
 Plug 'jpalardy/vim-slime'
+Plug 'hushicai/tagbar-javascript.vim'
+Plug 'ap/vim-css-color'
 
 " edit and format
 Plug 'matze/vim-move'
