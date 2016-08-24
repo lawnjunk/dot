@@ -1,8 +1,9 @@
 # Comment
 NEWLINE=$'\n'
-YELLA=$(tput setaf 147)
+#YELLA=$(tput setaf 147)
+YELLA=$(tput setaf 82)
 GEENN=$(tput setab 80)
-PROMPT='%{$YELLA%}%c$(git_prompt_text)%{$reset_color%}${NEWLINE}${${KEYMAP/vicmd/$vim_nrm_mode}/(main|viins)/$vim_ins_mode}  ☞  '
+PROMPT='${bold_color}%{$YELLA%}(%c)$(git_prompt_text)%{$reset_color%}${NEWLINE}${${KEYMAP/vicmd/$vim_nrm_mode}/(main|viins)/$vim_ins_mode}  ☞  '
 
 RPROMPT=""
 
@@ -19,8 +20,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 #ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[white]%} ✂ "
 ##
 # set RPROMPT to vi mode 
-vim_ins_mode="%{$fg_bold[151]%}[I]%{$reset_color%}%"
-vim_nrm_mode="%{$fg_bold[red]%}[N]%{$reset_color%}%" 
+vim_ins_mode="%{$fg_bold[151]%}I:%{$reset_color%}%"
+vim_nrm_mode="%{$fg_bold[red]%}N:%{$reset_color%}%" 
 
 function git_prompt_text {
   local g_info g_status
