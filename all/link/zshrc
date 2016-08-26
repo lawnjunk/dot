@@ -27,3 +27,8 @@ function vim() {
 
 alias v="vim"
 nvm use 6
+
+export HOMEBREW_GITHUB_API_TOKEN="0856c9f4bea1692a02400a48d5f390b762a2fe0a"
+
+# added by travis gem
+[ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh
