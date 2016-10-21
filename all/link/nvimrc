@@ -10,6 +10,7 @@ Plug 'Yggdroot/indentLine'
 
 " lang
 Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'mattn/emmet-vim'
 Plug 'isRuslan/vim-es6'
 Plug 'jpalardy/vim-slime'
@@ -47,11 +48,15 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" disbale highlight after search
+nnoremap <esc> :noh<return>
+nnoremap <tab> :noh<return>
+
 " setup defaults
 set noswapfile
 set backspace=2           " make backspace work like all other apps
 set number                " turn on the line numbers
-set relativenumber
+"set relativenumber
 set incsearch             " vim starts searching while typing search string
 set expandtab             " tabs are spaces
 set tabstop=2             " tabset two spaces
@@ -64,6 +69,12 @@ set cursorline            " allways show a line where the curser is
 syntax enable             " syntax always on
 colorscheme hybrid_reverse" set the color scheme
 
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use<Paste>
+
 " map double i to esc and <space> to leader
 imap ii <Esc>
 let mapleader = "\<Space>"
@@ -71,6 +82,8 @@ let mapleader = "\<Space>"
 " set paste and no pase
 nnoremap <silent> <leader>sp :set paste<CR>
 nnoremap <silent> <leader>sn :set nopaste<CR>
+
+
 
 " eash end-line jump
 noremap H ^
@@ -142,3 +155,10 @@ nmap <leader>b :Autoformat<CR>
 " vim slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+
+" vim go 
+filetype plugin indent on
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>g <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)

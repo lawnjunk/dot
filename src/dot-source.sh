@@ -32,7 +32,6 @@ sourceFilesInDir $DOT_ALL_SHELL_SOURCE_PATH
 sourceFilesInDir $DOT_OS_SOURCE_PATH
 sourceFilesInDir $DOT_OS_SHELL_SOURCE_PATH
 
-
 unset DIR_PATH
 unset SOURCE_FILES
 unset file

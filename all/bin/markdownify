@@ -1,4 +1,11 @@
 #!/usr/bin/env zsh
+
+if [[ $# -eq 0 ]];then 
+  echo "USAGE: markdownify [filepath] [lang]"
+  echo "       markdownify ~/.bashrc sh"
+  exit 
+fi 
+
 file=$1
 lang=$2
 

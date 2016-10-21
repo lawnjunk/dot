@@ -1,0 +1,18 @@
+#!/bin/bash
+html='<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo app</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/app.js"></script>
+  </head>
+  <body> 
+    <h1> Demo App </h1>
+  </body>
+</html>'
+
+
+echo -e "$html" > index.html
+mkdir js css
+echo "'use strict';" > js/app.js
+touch css/style.css

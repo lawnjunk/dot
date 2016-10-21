@@ -10,7 +10,7 @@ export NVM_DIR="$HOME/.nvm"
 # ~   ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
 source ~/.dot.conf
 export DOT_SHELL="zsh"
-source $DOT/bin/dot-source.sh
+source $DOT/src/dot-source.sh
 
 function vim() {
   args=()
@@ -25,10 +25,16 @@ function vim() {
   nvim -p "${args[@]}"
 }
 
-alias v="vim"
-nvm use 6
 
 export HOMEBREW_GITHUB_API_TOKEN="0856c9f4bea1692a02400a48d5f390b762a2fe0a"
 
 # added by travis gem
 [ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh
+
+# include gvm
+[[ -s "/Users/slugbyte/.gvm/scripts/gvm" ]] && source "/Users/slugbyte/.gvm/scripts/gvm"
+
+alias v="vim"
+nvm use 6
+gvm use go1.7
+alias gohome="cd $GOPATH/src/github.com/slugbyte/"

@@ -1,3 +1,0 @@
-#!/bin/bash
-line=$(wc -l "$1" |cut -d ' ' -f 8)
-tail -n "$((line - 1))" "$1"

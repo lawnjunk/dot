@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-if ((  $# < 1 ));then  
-  echo "USAGE ERROR: must provide at least one command name" && exit 1
-fi
+if [[ $# -eq 0 ]];then 
+  echo "USAGE: binfile [list of programs on \$PATH]"
+  echo "       binfile nmap"
+  echo "       binfile pwd cd ls vim help"
+  exit 
+fi 
 
-command_path=$(which "$@")
-if [[ "$command_path" ]] && (( $? == 0 ));then
-  file -b $command_path
-  exit
-fi
+command_path=$(which "$@" )
+for cmd in $command_path; do
+  echo -n "$cmd ----> "
+  file -b "$cmd"
+done
 
-echo "ERROR: no such command"

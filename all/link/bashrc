@@ -10,7 +10,7 @@ export V_GO_VERSION="V1.6"
 #    ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
 source ~/.dot.conf
 export DOT_SHELL="bash"
-source $DOT/bin/dot-source.sh
+source $DOT/src/dot-source.sh
 
 #if [[ ! "$TMUX" ]];then 
   #tmux -2 -S /tmp/tmux-session -L default
@@ -21,3 +21,9 @@ source $DOT/bin/dot-source.sh
 
 PATH=$PATH:/Applications/SuperCollider.app/Contents/MacOS
 SCVIM_TAGFILE=$HOME/.sctags
+
+export PATH="$HOME/.node/bin:$PATH"
+export NODE_PATH="$HOME/.node/lib/node_modules"
+
+
+alias lulwat="echo 'hello world'"

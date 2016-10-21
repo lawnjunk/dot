@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+basename $PWD | tr -d '\n' | pbcopy
