@@ -1,23 +1,47 @@
-# setup get aware prompt
-#export GITAWAREPROMPT=$HOME/.sh/git-aware-prompt
-#source "${GITAWAREPROMPT}/main.sh"
+# vendor dependencies
+export GITAWAREPROMPT=$HOME/.bash/git-aware-prompt
+. "${GITAWAREPROMPT}/main.sh"
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
-# setup tool version env vars
-export V_NODE_VERSION="v4.4.4"
-export V_BASH_VERSION="v4.3"
-export V_GO_VERSION="V1.6"
+# custom dependencies
+. $HOME/.bash/colors.sh
 
-#    ~  -  -  ~  -      -   -   - -- >>>>>>---- DOT ---->
-source ~/.dot.conf
-export DOT_SHELL="bash"
-source $DOT/bin/dot-source.sh
+# prompt
+export PS1="\[$txt_cyan\]\W \[$txt_yellow\]\$git_branch\[$txt_red\]\$git_dirty\[$txt_reset\]\n✿ "
+export PATH="$HOME/.bash/bin:$PATH"
 
-#if [[ ! "$TMUX" ]];then 
-  #tmux -2 -S /tmp/tmux-session -L default
-#fi
+# shorthand
+alias ls="ls -GF"
+alias ll="ls -lah"
+alias la="ls -a"
+alias 1="ls -1a"
+alias r=". ~/.bashrc"
+alias md="mkdir -p"
+alias rimraf="rm -rf"
+alias a="git add ."
+alias s="git status"
+alias c="git commit -m"
+alias p="git push origin"
+alias l="git pull origin"
+alias b="git branch -a"
+alias ch="git checkout"
+alias ..="cd .."
+alias gitz="cd $HOME/gitz"
+alias bldz="cd $HOME/bldz"
+alias e="nvim"
 
-# added by travis gem
-[ -f /Users/slugbyte/.travis/travis.sh ] && source /Users/slugbyte/.travis/travis.sh
+# colorful manual
+man() {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+      man "$@"
+}
 
-PATH=$PATH:/Applications/SuperCollider.app/Contents/MacOS
-SCVIM_TAGFILE=$HOME/.sctags
+

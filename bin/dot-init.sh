@@ -1,4 +1,5 @@
 #!/bin/bash
+
 function runInitScript(){
 DIR_PATH="$1"
 if [ -d "$DIR_PATH" ];then 
